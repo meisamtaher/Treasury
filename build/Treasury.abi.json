@@ -1,0 +1,119 @@
+{
+	"ABI version": 2,
+	"version": "2.2",
+	"header": ["pubkey", "time", "expire"],
+	"functions": [
+		{
+			"name": "constructor",
+			"inputs": [
+				{"name":"_owner","type":"address"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "initTokenWallet",
+			"inputs": [
+				{"name":"_tokenRoot","type":"address"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "onWalletOf",
+			"inputs": [
+				{"name":"_tokenWallet","type":"address"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "transfer",
+			"inputs": [
+				{"name":"_tokenRoot","type":"address"},
+				{"name":"_recipient","type":"address"},
+				{"name":"_amount","type":"uint128"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "onAcceptTokensTransfer",
+			"inputs": [
+				{"name":"tokenRoot","type":"address"},
+				{"name":"amount","type":"uint128"},
+				{"name":"sender","type":"address"},
+				{"name":"senderWallet","type":"address"},
+				{"name":"remainingGasTo","type":"address"},
+				{"name":"transferPayload","type":"cell"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "owner",
+			"inputs": [
+			],
+			"outputs": [
+				{"name":"value0","type":"address"}
+			]
+		},
+		{
+			"name": "renounceOwnership",
+			"inputs": [
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "transferOwnership",
+			"inputs": [
+				{"name":"newOwner","type":"address"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "tokenWallets",
+			"inputs": [
+			],
+			"outputs": [
+				{"name":"tokenWallets","type":"map(address,address)"}
+			]
+		}
+	],
+	"data": [
+		{"key":1,"name":"nonce_","type":"uint256"},
+		{"key":2,"name":"deployer_","type":"address"}
+	],
+	"events": [
+		{
+			"name": "TokenTransferred",
+			"inputs": [
+				{"name":"_tokenRoot","type":"address"},
+				{"name":"_recipient","type":"address"},
+				{"name":"amount","type":"uint256"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "OwnershipTransferred",
+			"inputs": [
+				{"name":"previousOwner","type":"address"},
+				{"name":"newOwner","type":"address"}
+			],
+			"outputs": [
+			]
+		}
+	],
+	"fields": [
+		{"name":"_pubkey","type":"uint256"},
+		{"name":"_timestamp","type":"uint64"},
+		{"name":"_constructorFlag","type":"bool"},
+		{"name":"owner_","type":"address"},
+		{"name":"nonce_","type":"uint256"},
+		{"name":"deployer_","type":"address"},
+		{"name":"tokenWallets","type":"map(address,address)"}
+	]
+}

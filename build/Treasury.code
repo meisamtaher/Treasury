@@ -1,0 +1,852 @@
+.version sol 0.62.0
+
+.macro constructor
+DROP
+GETGLOB 2
+ISNULL
+IFREF {
+	CALL $c4_to_c7_with_init_storage$
+}
+GETGLOB 6
+THROWIF 51
+OVER
+PUSHCONT {
+	LDREF
+	ENDS
+	CTOS
+}
+IF
+LDMSGADDR
+ENDS
+.loc ../contracts/Treasury.tsol, 26
+GETGLOB 5
+DUP
+ISNULL
+PUSHCONT {
+	DROP
+	PUSHINT 0
+}
+IF
+PUSHCONT {
+	.loc ../contracts/Treasury.tsol, 27
+	GETGLOB 5
+	DUP
+	ISNULL
+	PUSHCONT {
+		DROP
+		PUSHINT 0
+	}
+	IF
+	GETGLOB 2
+	EQUAL
+	DUP
+	PUSHCONT {
+		DROP
+		GETGLOB 12
+		PARSEMSGADDR
+		INDEX 3
+		PLDU 256
+		EQINT 0
+	}
+	IF
+	THROWIFNOT 1008
+	.loc ../contracts/Treasury.tsol, 28
+	ACCEPT
+}
+PUSHCONT {
+	.loc ../contracts/Treasury.tsol, 30
+	GETGLOB 12
+	PARSEMSGADDR
+	INDEX 3
+	PLDU 256
+	NEQINT 0
+	GETGLOB 9
+	GETGLOB 12
+	SDEQ
+	AND
+	THROWIFNOT 1008
+}
+IFELSE
+.loc ../contracts/Treasury.tsol, 32
+CALLREF {
+	CALL $_transferOwnership_d29d44ee_internal_macro$
+}
+.loc ../contracts/Treasury.tsol, 0
+CALLREF {
+	CALL $c7_to_c4$
+}
+THROW 0
+
+.macro initTokenWallet
+DROP
+GETGLOB 6
+THROWIFNOT 76
+GETGLOB 2
+ISNULL
+IFREF {
+	CALL $c4_to_c7$
+}
+.loc ../contracts/Treasury.tsol, 34
+OVER
+PUSHCONT {
+	LDREF
+	ENDS
+	CTOS
+}
+IF
+LDMSGADDR
+ENDS
+.loc ../contracts/Treasury.tsol, 0
+CALLREF {
+	CALL $initTokenWallet_b5685557_internal_macro$
+}
+IFREF {
+	CALL $upd_only_time_in_c4$
+}
+THROW 0
+
+.globl	initTokenWallet_b5685557_internal
+.type	initTokenWallet_b5685557_internal, @function
+CALL $initTokenWallet_b5685557_internal_macro$
+
+.macro initTokenWallet_b5685557_internal_macro
+.loc ../contracts/Treasury.tsol, 35
+FALSE ; decl return flag
+OVER
+GETGLOB 13
+PUSHINT 267
+DICTGET
+PUSHCONT {
+	PUSHREFSLICE {
+		.blob x8000000000000000000000000000000000000000000000000000000000000000001_
+	}
+}
+IFNOT
+PUSHREFSLICE {
+	.blob x8000000000000000000000000000000000000000000000000000000000000000001_
+}
+SDEQ
+PUSHCONT {
+	.loc ../contracts/Treasury.tsol, 39
+	OVER
+	TRUE
+	NEWC
+	STSLICECONST x6_
+	STI 1
+	STSLICECONST x1_
+	STSLICE
+	PUSHINT 9789369574394656757036770681243717074945
+	STUR 135
+	MYADDR
+	PUSHSLICE x2c1605451e989b39
+	NEWC
+	STSLICE
+	STSLICE
+	STBREFR
+	ENDC
+	PUSHINT 0
+	SENDRAWMSG
+}
+PUSHCONT {
+	.loc ../contracts/Treasury.tsol, 36
+	DROP2
+	PUSHINT 4
+}
+IFELSE
+.loc ../contracts/Treasury.tsol, 0
+IFRET
+DROP
+
+.macro onWalletOf
+DROP
+GETGLOB 6
+THROWIFNOT 76
+GETGLOB 2
+ISNULL
+IFREF {
+	CALL $c4_to_c7$
+}
+.loc ../contracts/Treasury.tsol, 45
+OVER
+PUSHCONT {
+	LDREF
+	ENDS
+	CTOS
+}
+IF
+LDMSGADDR
+ENDS
+.loc ../contracts/Treasury.tsol, 0
+CALLREF {
+	CALL $onWalletOf_681a98a5_internal_macro$
+}
+DROP
+CALLREF {
+	CALL $c7_to_c4$
+}
+THROW 0
+
+.globl	onWalletOf_681a98a5_internal
+.type	onWalletOf_681a98a5_internal, @function
+CALL $onWalletOf_681a98a5_internal_macro$
+
+.macro onWalletOf_681a98a5_internal_macro
+.loc ../contracts/Treasury.tsol, 47
+GETGLOB 9
+GETGLOB 13
+PUSHINT 267
+DICTSET
+SETGLOB 13
+.loc ../contracts/Treasury.tsol, 0
+
+.macro transfer
+DROP
+GETGLOB 6
+THROWIFNOT 76
+GETGLOB 2
+ISNULL
+IFREF {
+	CALL $c4_to_c7$
+}
+.loc ../contracts/Treasury.tsol, 49
+OVER
+PUSHCONT {
+	LDREF
+	ENDS
+	CTOS
+}
+IF
+LDMSGADDR
+LDREF
+ENDS
+CTOS
+LDMSGADDR
+LDU 128
+ENDS
+.loc ../contracts/Treasury.tsol, 0
+CALLREF {
+	CALL $transfer_56e596a8_internal_macro$
+}
+DROP
+CALLREF {
+	CALL $c7_to_c4$
+}
+THROW 0
+
+.globl	transfer_56e596a8_internal
+.type	transfer_56e596a8_internal, @function
+CALL $transfer_56e596a8_internal_macro$
+
+.macro transfer_56e596a8_internal_macro
+.loc ../contracts/Ownable.tsol, 29
+GETGLOB 10
+PARSEMSGADDR
+INDEX 3
+PLDU 256
+NEQINT 0
+GETGLOB 10
+GETGLOB 9
+SDEQ
+AND
+THROWIFNOT 1007
+.loc ../contracts/Treasury.tsol, 50
+PUSH S2
+GETGLOB 13
+PUSHINT 267
+DICTGET
+PUSHCONT {
+	PUSHREFSLICE {
+		.blob x8000000000000000000000000000000000000000000000000000000000000000001_
+	}
+}
+IFNOT
+PUSHREFSLICE {
+	.blob x8000000000000000000000000000000000000000000000000000000000000000001_
+}
+SDEQ
+THROWIF 1003
+.loc ../contracts/Treasury.tsol, 51
+PUSHREF {
+}
+.loc ../contracts/Treasury.tsol, 52
+TRUE
+GETGLOB 9
+PUSHINT 0
+BLKSWAP 2, 4
+ROLL 6
+GETGLOB 13
+PUSHINT 267
+DICTGET
+PUSHCONT {
+	PUSHREFSLICE {
+		.blob x8000000000000000000000000000000000000000000000000000000000000000001_
+	}
+}
+IFNOT
+TRUE
+NEWC
+STSLICECONST x6_
+STI 1
+STSLICECONST x1_
+STSLICE
+PUSHINT 9789369574394656757036770681243717074945
+STUR 135
+ROLLREV 6
+NEWC
+STSLICECONST x73e22143
+STU 128
+STSLICE
+STU 128
+ROLLREV 3
+NEWC
+STSLICE
+STI 1
+STREF
+STBREFR
+STBREFR
+ENDC
+PUSHINT 0
+SENDRAWMSG
+.loc ../contracts/Treasury.tsol, 0
+
+.macro onAcceptTokensTransfer
+DROP
+GETGLOB 6
+THROWIFNOT 76
+GETGLOB 2
+ISNULL
+IFREF {
+	CALL $c4_to_c7$
+}
+.loc ../contracts/Treasury.tsol, 68
+OVER
+PUSHCONT {
+	LDREF
+	ENDS
+	CTOS
+}
+IF
+LDMSGADDR
+LDU 128
+LDREF
+ENDS
+CTOS
+LDMSGADDR
+LDREF
+ENDS
+CTOS
+LDMSGADDR
+LDREF
+ENDS
+CTOS
+LDMSGADDR
+LDREF
+ENDS
+.loc ../contracts/Treasury.tsol, 0
+CALLREF {
+	CALL $onAcceptTokensTransfer_e63f2284_internal_macro$
+}
+DROP
+CALLREF {
+	CALL $c7_to_c4$
+}
+THROW 0
+
+.macro onAcceptTokensTransfer_e63f2284_internal_macro
+.loc ../contracts/Treasury.tsol, 81
+BLKDROP 3
+ROT
+PUSHSLICE xc0000000000000000000000001
+NEWC
+STSLICE
+ROLLREV 3
+NEWC
+STSLICECONST x4d77c2a6
+STSLICE
+ROTREV
+NEWC
+STSLICE
+STU 256
+STBREFR
+STBREFR
+ENDC
+PUSHINT 0
+SENDRAWMSG
+.loc ../contracts/Treasury.tsol, 0
+
+.macro owner
+DROP
+GETGLOB 6
+THROWIFNOT 76
+GETGLOB 2
+ISNULL
+IFREF {
+	CALL $c4_to_c7$
+}
+.loc ../contracts/Ownable.tsol, 36
+ENDS
+.loc ../contracts/Ownable.tsol, 0
+CALLREF {
+	CALL $owner_8da5cb5b_internal_macro$
+}
+OVER
+PUSHCONT {
+	PUSH S3
+	CTOS
+	LDU 2
+	LDMSGADDR
+	DROP
+	NIP
+	NEWC
+	STSLICECONST xc
+	STSLICE
+	PUSHINT 1
+	STUR 98
+	SWAP
+	NEWC
+	STSLICECONST xdf0bcfde
+	STSLICE
+	STBREFR
+	ENDC
+	PUSHINT 0
+	SENDRAWMSG
+}
+PUSHCONT {
+	DROP
+}
+IFELSE
+IFREF {
+	CALL $upd_only_time_in_c4$
+}
+THROW 0
+
+.globl	owner_8da5cb5b_internal
+.type	owner_8da5cb5b_internal, @function
+CALL $owner_8da5cb5b_internal_macro$
+
+.macro owner_8da5cb5b_internal_macro
+.loc ../contracts/Ownable.tsol, 37
+GETGLOB 10
+.loc ../contracts/Ownable.tsol, 0
+
+.macro renounceOwnership
+DROP
+GETGLOB 6
+THROWIFNOT 76
+GETGLOB 2
+ISNULL
+IFREF {
+	CALL $c4_to_c7$
+}
+.loc ../contracts/Ownable.tsol, 47
+ENDS
+.loc ../contracts/Ownable.tsol, 0
+CALLREF {
+	CALL $renounceOwnership_715018a6_internal_macro$
+}
+DROP
+CALLREF {
+	CALL $c7_to_c4$
+}
+THROW 0
+
+.globl	renounceOwnership_715018a6_internal
+.type	renounceOwnership_715018a6_internal, @function
+CALL $renounceOwnership_715018a6_internal_macro$
+
+.macro renounceOwnership_715018a6_internal_macro
+.loc ../contracts/Ownable.tsol, 29
+GETGLOB 10
+PARSEMSGADDR
+INDEX 3
+PLDU 256
+NEQINT 0
+GETGLOB 10
+GETGLOB 9
+SDEQ
+AND
+THROWIFNOT 1007
+.loc ../contracts/Ownable.tsol, 48
+PUSHREFSLICE {
+	.blob x8000000000000000000000000000000000000000000000000000000000000000001_
+}
+CALLREF {
+	CALL $_transferOwnership_d29d44ee_internal_macro$
+}
+.loc ../contracts/Ownable.tsol, 0
+
+.macro transferOwnership
+DROP
+GETGLOB 6
+THROWIFNOT 76
+GETGLOB 2
+ISNULL
+IFREF {
+	CALL $c4_to_c7$
+}
+.loc ../contracts/Ownable.tsol, 55
+OVER
+PUSHCONT {
+	LDREF
+	ENDS
+	CTOS
+}
+IF
+LDMSGADDR
+ENDS
+.loc ../contracts/Ownable.tsol, 0
+CALLREF {
+	CALL $transferOwnership_f2fde38b_internal_macro$
+}
+DROP
+CALLREF {
+	CALL $c7_to_c4$
+}
+THROW 0
+
+.globl	transferOwnership_f2fde38b_internal
+.type	transferOwnership_f2fde38b_internal, @function
+CALL $transferOwnership_f2fde38b_internal_macro$
+
+.macro transferOwnership_f2fde38b_internal_macro
+.loc ../contracts/Ownable.tsol, 29
+GETGLOB 10
+PARSEMSGADDR
+INDEX 3
+PLDU 256
+NEQINT 0
+GETGLOB 10
+GETGLOB 9
+SDEQ
+AND
+THROWIFNOT 1007
+.loc ../contracts/Ownable.tsol, 56
+DUP
+PUSHREFSLICE {
+	.blob x8000000000000000000000000000000000000000000000000000000000000000001_
+}
+SDEQ
+THROWIF 1006
+.loc ../contracts/Ownable.tsol, 57
+CALLREF {
+	CALL $_transferOwnership_d29d44ee_internal_macro$
+}
+.loc ../contracts/Ownable.tsol, 0
+
+.globl	_transferOwnership_d29d44ee_internal
+.type	_transferOwnership_d29d44ee_internal, @function
+CALL $_transferOwnership_d29d44ee_internal_macro$
+
+.macro _transferOwnership_d29d44ee_internal_macro
+.loc ../contracts/Ownable.tsol, 65
+GETGLOB 10
+.loc ../contracts/Ownable.tsol, 66
+OVER
+SETGLOB 10
+.loc ../contracts/Ownable.tsol, 67
+PUSHSLICE xc0000000000000000000000001
+NEWC
+STSLICE
+ROTREV
+NEWC
+STSLICECONST x6115f072
+STSLICE
+SWAP
+NEWC
+STSLICE
+STBREFR
+STBREFR
+ENDC
+PUSHINT 0
+SENDRAWMSG
+.loc ../contracts/Ownable.tsol, 0
+
+.macro c4_to_c7
+PUSHROOT
+CTOS
+LDU 256 ; pubkey c4
+LDU 64 ; pubkey timestamp c4
+LDU 1 ; ctor flag
+NIP
+LDMSGADDR
+LDREF
+ENDS
+CTOS
+LDU 256
+LDMSGADDR
+LDDICT
+ENDS
+SETGLOB 13
+SETGLOB 12
+SETGLOB 11
+SETGLOB 10
+SETGLOB 3
+SETGLOB 2
+
+.macro c4_to_c7_with_init_storage
+PUSHROOT
+CTOS
+SBITS
+GTINT 1
+PUSHCONT {
+	PUSHINT 0
+	PUSHROOT
+	CTOS
+	PLDDICT ; D
+	PUSHREFSLICE {
+		.blob x8000000000000000000000000000000000000000000000000000000000000000001_
+	}
+	PUSHINT 1
+	PUSH S2
+	PUSHINT 64
+	DICTUGET
+	ZEROSWAPIFNOT
+	PUSHCONT {
+		PLDU 256
+	}
+	IF
+	PUSHINT 2
+	PUSH S3
+	PUSHINT 64
+	DICTUGET
+	PUSHCONT {
+		PUSHREFSLICE {
+			.blob x8000000000000000000000000000000000000000000000000000000000000000001_
+		}
+	}
+	IFNOT
+	NEWDICT
+	SETGLOB 13
+	SETGLOB 12
+	SETGLOB 11
+	SETGLOB 10
+	PUSHINT 64
+	DICTUGET
+	THROWIFNOT 61
+	PLDU 256
+	SETGLOB 2
+	PUSHINT 0 ; timestamp
+	SETGLOB 3
+}
+IFREFELSE {
+	CALL $c4_to_c7$
+}
+
+.macro c7_to_c4
+GETGLOB 13
+GETGLOB 12
+GETGLOB 11
+GETGLOB 10
+GETGLOB 3
+GETGLOB 2
+NEWC
+STU 256
+STU 64
+STONE
+STSLICE
+ROLLREV 3
+NEWC
+STU 256
+STSLICE
+STDICT
+STBREFR
+ENDC
+POPROOT
+
+.macro upd_only_time_in_c4
+PUSHROOT
+CTOS
+LDU 256
+LDU 64
+NIP
+GETGLOB 3
+ROT
+NEWC
+STU 256
+STU 64
+STSLICE
+ENDC
+POPROOT
+
+.internal-alias :main_internal, 0
+.internal :main_internal
+PUSHROOT
+CTOS
+SBITS
+NEQINT 1
+SETGLOB 6
+PUSH S2
+CTOS
+LDU 4 ; bounced tail
+LDMSGADDR ; bounced src tail
+DROP
+SETGLOB 9
+MODPOW2 1
+IFRET
+OVER
+SEMPTY ; isEmpty
+IFJMPREF {
+	GETGLOB 6
+	THROWIFNOT 76
+}
+OVER
+LDUQ 32  ; [funcId] body' ok
+THROWIFNOT 60
+OVER
+IFNOTJMPREF {
+	GETGLOB 6
+	THROWIFNOT 76
+}
+SWAP
+CALLREF {
+	CALL $public_function_selector$
+}
+THROW 60
+
+.internal-alias :main_external, -1
+.internal :main_external
+PUSHROOT
+CTOS
+SBITS
+NEQINT 1
+SETGLOB 6
+PUSHREFSLICE {
+	.blob x8000000000000000000000000000000000000000000000000000000000000000001_
+}
+SETGLOB 9
+OVER
+CALLREF {
+	CALL $c4_to_c7_with_init_storage$
+}
+LDU 1 ; haveSign msgSlice
+SWAP
+PUSHCONT {
+	PUSHPOW2 9
+	LDSLICEX ; signatureSlice msgSlice
+	DUP
+	HASHSU ; signatureSlice msgSlice hashMsgSlice
+	SWAP
+	LDU 1 ; signatureSlice hashMsgSlice hasPubkey msgSlice
+	SWAP
+	PUSHCONT {
+		LDU 256 ; signatureSlice hashMsgSlice pubkey msgSlice
+		XCHG S3
+		SWAP
+	}
+	PUSHCONT {
+		XCHG S2
+		GETGLOB 2
+	}
+	IFELSE
+	DUP
+	SETGLOB 5
+	CHKSIGNU ; msgSlice isSigned
+	THROWIFNOT 40
+}
+PUSHCONT {
+	LDU 1 ; hasPubkey msgSlice
+	SWAP
+	THROWIF 58
+}
+IFELSE
+LDU 64 ; timestamp msgSlice
+SWAP
+CALL $replay_protection_macro$
+LDU 32 ; expireAt msgSlice
+SWAP
+NOW ; msgSlice expireAt now
+GREATER ; msgSlice expireAt>now
+THROWIFNOT 57
+LDU 32 ; funcId body
+SWAP
+CALLREF {
+	CALL $public_function_selector$
+}
+THROW 60
+
+.macro tokenWallets
+DROP
+ENDS
+CALLREF {
+	CALL $c4_to_c7$
+}
+GETGLOB 13
+OVER
+PUSHCONT {
+	PUSHSLICE xc0000000000000000000000000e0c0291d
+	NEWC
+	STSLICE
+	STDICT
+	ENDC
+	PUSHINT 0
+	SENDRAWMSG
+}
+IF
+THROW 0
+
+.macro public_function_selector
+DUP
+PUSHINT 1060345373
+LEQ
+IFJMPREF {
+	DUP
+	PUSHINT 116497488
+	EQUAL
+	IFJMPREF {
+		CALL $transfer$
+	}
+	DUP
+	PUSHINT 235197086
+	EQUAL
+	IFJMPREF {
+		CALL $transferOwnership$
+	}
+	DUP
+	PUSHINT 513317689
+	EQUAL
+	IFJMPREF {
+		CALL $onWalletOf$
+	}
+	DUP
+	PUSHINT 1060345373
+	EQUAL
+	IFJMPREF {
+		CALL $initTokenWallet$
+	}
+}
+DUP
+PUSHINT 1729444094
+LEQ
+IFJMPREF {
+	DUP
+	PUSHINT 1196840156
+	EQUAL
+	IFJMPREF {
+		CALL $constructor$
+	}
+	DUP
+	PUSHINT 1594609630
+	EQUAL
+	IFJMPREF {
+		CALL $owner$
+	}
+	DUP
+	PUSHINT 1623206173
+	EQUAL
+	IFJMPREF {
+		CALL $tokenWallets$
+	}
+	DUP
+	PUSHINT 1729444094
+	EQUAL
+	IFJMPREF {
+		CALL $renounceOwnership$
+	}
+}
+DUP
+PUSHINT 1893244873
+EQUAL
+IFJMPREF {
+	CALL $onAcceptTokensTransfer$
+}
+
