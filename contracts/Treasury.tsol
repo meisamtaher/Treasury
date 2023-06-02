@@ -1,0 +1,83 @@
+pragma ton-solidity >= 0.57.0;
+
+pragma AbiHeader expire;
+pragma AbiHeader pubkey;
+
+import "locklift/src/console.tsol";
+
+import "tip3/contracts/interfaces/ITokenWallet.sol";
+import "tip3/contracts/interfaces/ITokenRoot.sol";
+import "tip3/contracts/interfaces/IAcceptTokensTransferCallback.sol";
+import "./Ownable.tsol";
+
+// this is treasury that can hold any token and the owner of this treasury can transfer anything that he wants 
+// the owner can be transfered to another address 
+// best use case is for DAO contract
+contract Treasury is 
+    Ownable,
+    IAcceptTokensTransferCallback{
+
+    uint256 static nonce_;
+    address static deployer_;
+    mapping (address => address) public tokenWallets;
+    event TokenTransferred(address _tokenRoot, address _recipient, uint256 amount);
+
+    constructor(address _owner) public {
+        if (msg.pubkey() != 0) {
+            require(msg.pubkey() == tvm.pubkey() && deployer_.value == 0, 1008 ); //TokenErrors.WRONG_ROOT_OWNER
+            tvm.accept();
+        } else {
+            require(deployer_.value != 0 && msg.sender == deployer_, 1008 ); //TokenErrors.WRONG_ROOT_OWNER
+        }
+        _transferOwnership(_owner);
+    }
+    function initTokenWallet(address _tokenRoot)public view{
+        if(tokenWallets[_tokenRoot] != address(0)){
+            return;
+        }
+        else{
+            ITokenRoot(_tokenRoot).walletOf{
+                bounce: true,
+                callback:onWalletOf
+            }(address(this));
+        }
+    }
+    function onWalletOf(address _tokenWallet)public {
+        // how to check validity of the sender of this message?
+        tokenWallets[msg.sender] = _tokenWallet;
+    }
+    function transfer(address _tokenRoot,address _recipient,uint128 _amount) public onlyOwner{
+        require(tokenWallets[_tokenRoot] != address(0),1003);// tokenwallet should be initialized first
+        TvmCell payload;
+        ITokenWallet(tokenWallets[_tokenRoot]).transfer{
+                bounce: true
+            }(
+                _amount,
+                _recipient,
+                0,
+                msg.sender,
+                true,
+                payload
+            );
+    }
+    /// @notice Handles incoming token transfer
+    /// Initializes native token withdraw
+    /// @param tokenRoot Transferred token root address.
+    /// @param amount Tokens amount
+    /// @param remainingGasTo Address to send remaining gas to
+    function onAcceptTokensTransfer(
+        address tokenRoot,
+        uint128 amount,
+        address sender,
+        address senderWallet,
+        address remainingGasTo,
+        TvmCell transferPayload
+    ) override external {
+        // (
+        //     address recipient,
+        //     uint256 amount,
+        //     address tokenRoot
+        // ) = abi.decode(transferPayload, (address, uint256, address));
+        emit TokenTransferred(tokenRoot, sender, amount);
+    }
+}
