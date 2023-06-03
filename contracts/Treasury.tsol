@@ -48,7 +48,11 @@ contract Treasury is
     }
     function transfer(address _tokenRoot,address _recipient,uint128 _amount) public onlyOwner{
         require(tokenWallets[_tokenRoot] != address(0),1003);// tokenwallet should be initialized first
-        TvmCell payload;
+        TvmCell payload = abi.encode(
+            _tokenRoot,
+            _recipient,
+            _amount
+        );
         ITokenWallet(tokenWallets[_tokenRoot]).transfer{
                 bounce: true
             }(

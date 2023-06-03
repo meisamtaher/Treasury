@@ -1,5 +1,5 @@
 {
-  "name": "tip3-token",
+  "name": "treasury",
   "license": "Apache-2.0",
   "author": {
     "name": "sam",
@@ -23,7 +23,8 @@
     "chai": "^4.3.7",
     "everscale-standalone-client": "^2.1.18",
     "locklift": "^2.5.2",
-    "ts-mocha": "^10.0.0"
+    "ts-mocha": "^10.0.0",
+    "dotenv": "^16.0.0"
   },
   "scripts": {
     "build": "npx locklift build",
